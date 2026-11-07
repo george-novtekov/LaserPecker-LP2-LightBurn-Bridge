@@ -1,0 +1,25 @@
+name: Offline Windows tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          architecture: x64
+      - name: Install runtime dependencies
+        run: python -m pip install -r bridge/requirements.txt
+      - name: Run offline regressions
+        run: python -m unittest discover -s bridge/tests -t . -v
+      - name: Run offline application self-test
+        run: python -m bridge --self-test --report build/self-test.json

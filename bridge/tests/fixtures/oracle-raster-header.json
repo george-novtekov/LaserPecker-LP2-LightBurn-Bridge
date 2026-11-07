@@ -1,0 +1,35 @@
+{
+  "bundle_sha256": "9fd68035bdba8fd81955b305bc2440ad99c20a5fb8b396b82c4b9c1bc77df2c7",
+  "function_sha256": "fa5c6b138747aea2b866810d6242fa1b84becd0d00a323e043f1c80eef706120",
+  "scope": "Pure vendor header function executed offline in bounded Node VM; no app/network/hardware",
+  "cases": [
+    {
+      "args": {
+        "fileId": 305419896,
+        "w": 13,
+        "h": 2,
+        "nx": 10,
+        "ny": 20,
+        "px": 4,
+        "dpi": 254,
+        "printName": "raster",
+        "isCompress": true
+      },
+      "hex": "60000d00021234567804000a001400fe000000000000000000000000000000000000726173746572000000000000000000000000000000000000000000000000"
+    },
+    {
+      "args": {
+        "fileId": 123,
+        "w": 100,
+        "h": 40,
+        "nx": 450,
+        "ny": 480,
+        "px": 4,
+        "dpi": 254,
+        "printName": "S0-BITMAP-100",
+        "isCompress": true
+      },
+      "hex": "60006400280000007b0401c201e000fe00000000000000000000000000000000000053302d4249544d41502d3130300000000000000000000000000000000000"
+    }
+  ]
+}

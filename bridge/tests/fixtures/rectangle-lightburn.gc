@@ -1,0 +1,23 @@
+; LightBurn Pro (Trial) 2.2.01
+; GRBL device profile, absolute coords
+; Bounds: X35 Y40 to X65 Y60
+G00 G17 G40 G21 G54
+G90
+M4
+; Cut @ 120 mm/min, 20% power
+M9
+G0 X65Y60
+M3
+; Layer C00
+G1 Y40S200F120
+G1 X35
+G1 Y60
+G1 X65
+G1 S0
+M9
+G1 S0
+M5
+G90
+; return to user-defined finish pos
+G0 X0Y0
+M2

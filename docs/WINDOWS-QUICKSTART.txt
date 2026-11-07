@@ -1,0 +1,25 @@
+LP2 LightBurn Bridge - Windows quick start (scan-8)
+
+1. Extract the entire ZIP to a writable folder, for example in Documents.
+2. Double-click LP2Bridge.exe. Python is already bundled.
+3. USB: power the LP2, attach USB, choose USB and its CH340 COM port.
+   Bluetooth: keep external power connected, UNPLUG USB, choose Bluetooth,
+   click Scan and select the LP2.
+4. Click Connect and wait for Connected - Idle.
+5. Create/select a generic GRBL device in LightBurn:
+   Ethernet/TCP, 127.0.0.1, port 23230, 100 x 100 mm,
+   front-left origin, Absolute Coordinates, auto-home OFF, S-value max 1000.
+   Name it LP2 USB BRIDGE (the same profile works for Bluetooth).
+6. Keep bridge rotation 180 and whole-job left/right correction enabled.
+   Keep the LightBurn artwork unmirrored. Check a small asymmetric design.
+7. Read README.md for the first-test workflow and operating limits.
+   Guides are in docs/. No engraving starts automatically when the app opens.
+
+Use normal LP2 enclosure/protection and material precautions. Supervise the job.
+Stop job cancels it; interrupted bulk uploads may require restarting the LP2.
+The app is experimental and is qualified only against the development LP2 unit.
+Settings, profiles and private captures are stored in LP2BridgeData beside the EXE.
+
+Downloads and help:
+https://github.com/george-novtekov/LaserPecker-LP2-LightBurn-Bridge/releases
+https://github.com/george-novtekov/LaserPecker-LP2-LightBurn-Bridge/issues

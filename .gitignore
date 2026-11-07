@@ -1,0 +1,32 @@
+# Local Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Generated build/release output
+/build/
+/dist/
+*.spec
+/bridge/build_manifest.json
+*.exe
+*.zip
+*.sha256.txt
+
+# Runtime settings, calibration and personal job captures
+LP2BridgeData/
+/bridge/evidence/
+*.log
+.env
+.env.*
+!.env.example
+
+# Editor and OS state
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store
