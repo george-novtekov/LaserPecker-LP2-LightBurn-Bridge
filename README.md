@@ -12,6 +12,21 @@ This is an independent, experimental project. Development hardware runs LP2
 firmware V3.7.6 with hardware field `01321e86`; other firmware and LaserPecker models
 have not been qualified. Current application version: **scan-8**.
 
+## Disclaimer and limitation of liability
+
+**USE THIS SOFTWARE ENTIRELY AT YOUR OWN RISK.** It is provided **"AS IS"** and
+**"AS AVAILABLE"**, without warranties of any kind, express or implied, including
+merchantability, fitness for a particular purpose, and non-infringement.
+
+To the maximum extent permitted by applicable law, the author and contributors
+shall not be liable for any claim, injury, loss, expense, or damage of any kind
+arising from or related to using, misusing, or being unable to use this software.
+This includes direct, indirect, incidental, special, and consequential damages;
+personal injury; fire; damage to the laser, computer, materials, or other property;
+and loss of data, income, or profits, regardless of the basis of the claim and even
+if advised of the possibility of such damage. You are responsible for operating
+your equipment safely and assessing whether the software is suitable for your use.
+
 ## What it does
 
 - A Windows GUI for connection, job status, logs, calibration, and print diagnostics.
