@@ -85,8 +85,61 @@ longer, especially with continuous images.
 
 ## 3. Set up LightBurn
 
-Create a device manually in LightBurn using these settings. Names and placement of
-controls can vary with the LightBurn version.
+Create a dedicated LightBurn device profile for the bridge. LightBurn connects to
+the bridge on the **same Windows PC** over TCP; the bridge then handles the LP2's
+USB or Bluetooth connection. Use the same profile for either transport.
+
+### A. Create the device profile
+
+1. Start **LP2Bridge.exe**, connect to the LP2, and wait for **Connected - Idle**.
+2. Open LightBurn's **Laser** window. If it is hidden, enable it from the **Window**
+   menu. Click **Devices → Create Manually**.
+3. Choose **GRBL** as the device type and click **Next**. This bridge presents a
+   generic GRBL interface, so use that device type even though the LP2 uses galvos.
+4. Choose **Ethernet or Wifi/TCP** as the connection type and click **Next**.
+   This applies even when the bridge connects to the LP2 by USB or Bluetooth.
+5. Enter **`127.0.0.1`** as the IP address/hostname, then click **Next**.
+6. Name the profile **`LP2 USB BRIDGE`**. Set **Width = 100 mm** and
+   **Height = 100 mm**.
+7. Select the **front-left / lower-left origin**. Turn **Auto-home on startup**
+   **off**, then continue to the summary.
+8. Click **Finish**, then **OK** in the Devices window to save the profile.
+   Select **LP2 USB BRIDGE** in the Laser window's device dropdown.
+
+Wizard labels can vary with the LightBurn version. See LightBurn's official
+[manual device creation guide](https://docs.lightburnsoftware.com/2.1/GetStarted/CreateManually/)
+for the wizard screens.
+
+### B. Set the TCP port and power scale
+
+With **LP2 USB BRIDGE** selected, open **Edit → Device Settings → Basic Settings**:
+
+1. Set **Network Port = `23230`**. LightBurn's default network port is 23; change
+   it to the bridge's port. Enter the address and port in their separate fields.
+2. Set **S-value Max = `1000`** so LightBurn's 100% output maps to S1000.
+3. Keep **Auto-Home on Startup** disabled and confirm the work area and origin.
+4. Use **Buffered** transfer mode. Leave any target-buffer override disabled so
+   LightBurn can use the buffer size reported by the bridge.
+5. Keep **Query Regularly for Laser Position** enabled for status polling.
+6. Click **OK** to save. If the connection does not refresh, right-click the
+   **Devices** button in the Laser window to reconnect.
+
+LightBurn documents the network-port and power-scale controls under
+[Device Settings: Basic Settings](https://docs.lightburnsoftware.com/2.2/Reference/DeviceSettings/BasicSettings/).
+
+### C. Set job coordinates and orientation
+
+In the **Laser** window, set **Start From → Absolute Coords** (also labeled
+**Absolute Coordinates** in some versions). Place the complete artwork inside the
+100 × 100 mm workspace and check its bounds in Preview.
+
+In the bridge's **Connection** tab, keep **Rotation = 180** and **Correct left/right
+mirror (whole job) = enabled** for the current device mapping. Keep artwork
+unmirrored in LightBurn. Check a small asymmetric design before a full job; the
+scan-8 correction has offline coverage, while its physical orientation still needs
+confirmation. Disconnect the bridge before changing locked connection settings.
+
+### Profile settings reference
 
 | Setting | Value |
 | --- | --- |
@@ -100,14 +153,29 @@ controls can vary with the LightBurn version.
 | Start From | **Absolute Coordinates** |
 | Auto-home on startup | **Off** |
 | S-value max | **1000** |
+| Transfer mode | **Buffered** |
+| Target-buffer override | **Off** |
+| Query regularly for laser position | **On** |
 
-Select this device in LightBurn while the bridge is connected. The bridge should
-report a LightBurn connection, and LightBurn should show the GRBL device as idle.
+### D. Verify the connection and save a backup
 
-Keep the bridge's default **Rotation = 180** and **Correct left/right mirror
-(whole job) = enabled** for the current device mapping. Keep artwork unmirrored in
-LightBurn. Check a small asymmetric design before a full job; the scan-8 correction
-has offline coverage, while its physical orientation still needs confirmation.
+1. Confirm the bridge shows **Connected - Idle** and reports that LightBurn is
+   connected. LightBurn should show **Ready** or **Idle**, depending on the panel.
+2. Open LightBurn's **Console** tab (enable **Window → Console** if hidden).
+   Enter **`$I`** and press Enter. The bridge should return a version line containing
+   **`LP2-USB-BRIDGE:host-scan-8`**, followed by `ok`.
+3. Enter **`?`** to request status. An idle bridge returns a line beginning
+   **`<Idle|`**. These two checks query information and do not start engraving.
+4. Open **Devices**, select the profile, and click **Export** to keep a backup.
+   Use **Import** to restore a saved `.lbdev` or `.lbzip` device profile, depending
+   on your LightBurn version. See the official
+   [Devices guide](https://docs.lightburnsoftware.com/latest/Reference/Devices/).
+
+If LightBurn stays disconnected, check that the bridge is running, the selected
+device uses TCP, and **Network Port** is **23230**. If you changed the bridge's
+TCP port, enter that same port in LightBurn. The LP2 COM port is selected inside
+the bridge; LightBurn uses the local TCP endpoint. See
+[connection troubleshooting](docs/TROUBLESHOOTING.md#lightburn-does-not-connect).
 
 ## 4. Make a first test
 
